@@ -6,8 +6,3 @@ env
 .envrc
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-*.pyz
-*.pyw
-

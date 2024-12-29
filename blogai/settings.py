@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'theme',
     'django_htmx',
     'core',
-# ]
+]
 
 INTERNAL_IPS = [
     '127.0.0.1',
