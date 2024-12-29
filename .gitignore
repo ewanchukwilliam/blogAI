@@ -1,0 +1,13 @@
+requirements.txt
+venv/
+.venv/
+env
+.env
+.envrc
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+
