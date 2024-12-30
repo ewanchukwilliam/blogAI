@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'TAIlwind',
+    'tailwind',
     'theme',
     'django_htmx',
     'core',
@@ -66,7 +66,10 @@ ROOT_URLCONF = 'blogai.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            "theme",
+
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
