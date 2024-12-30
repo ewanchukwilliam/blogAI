@@ -44,8 +44,10 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				"accent-blue": "#B8D0E8", // pastel blue
-				"bg-dark": "#1A1B26", // dark background
+				"accent": "#B8D0E8", // pastel blue
+				"mainbackground": "#1A1B26", // main dark background
+				"lighterbackground": "#24273A", // lighter shade of dark background
+				"darkerbackground": "#13141F", // darker shade of dark background
 			},
 			fontFamily: {
 				victor: ["Victor Mono", "monospace"],
@@ -61,5 +63,7 @@ module.exports = {
 		require("@tailwindcss/forms"),
 		require("@tailwindcss/typography"),
 		require("@tailwindcss/aspect-ratio"),
+		require("daisyui"),
+
 	],
 };

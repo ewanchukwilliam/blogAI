@@ -1,8 +1,9 @@
 from ast import List
+
 from django.http import (HttpResponse, HttpResponseBadRequest,
                          HttpResponseNotFound, HttpResponseRedirect)
-from django.urls import reverse
 from django.shortcuts import render
+from django.urls import reverse
 
 
 # Create your views here.
@@ -46,13 +47,14 @@ def month_number(request, month):
     if month >= 12 or month < 0:
         return HttpResponseBadRequest("This is not a valid month")
     months = list(month_names.keys())
-    month = months[month-1]
+    month = months[month - 1]
     path_redirect = reverse("month", args=[month])
     return HttpResponseRedirect(path_redirect)
+
 
 def month(request, month):
     return HttpResponse(month_names[month])
 
+
 def homepage(request):
-    context = {}
-    return render(request, 'homepage.html',context)
+    return render(request, "Homepage.html")
