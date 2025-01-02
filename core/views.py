@@ -9,3 +9,6 @@ def homepage(request):
 def logout_view(request):
     logout(request)
     return redirect("home")
+
+def refresh_sidebar(request):
+    return render(request, 'components/sidebar.html')

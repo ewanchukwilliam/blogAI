@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.homepage, name='home'),
+    path('refresh-sidebar/', views.refresh_sidebar, name='refresh_sidebar'),
 ]
 
 # path("january", views.homepageview),

@@ -8,52 +8,10 @@
             
             <div class="card w-full max-w-md bg-darkerbackground shadow-xl">
                 <div class="card-body">
-                    <form hx-post="{% url 'authentication:login' %}" 
-                          hx-target="#content-area"
-                          class="space-y-6">
+                    <form method="post" action="{% url 'authentication:login' %}">
                         {% csrf_token %}
-                        
-                        {% if form.errors %}
-                        <div class="alert alert-error">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            <div>
-                                <strong>Please correct the errors below.</strong>
-                                {% for error in form.non_field_errors %}
-                                    <p>{{ error }}</p>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        {% endif %}
-
-                        <!-- Username field -->
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text">Username</span>
-                            </label>
-                            {{ form.username }}
-                            {% if form.username.errors %}
-                            <label class="label">
-                                <span class="label-text-alt text-error">{{ form.username.errors|join:", " }}</span>
-                            </label>
-                            {% endif %}
-                        </div>
-
-                        <!-- Password field -->
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text">Password</span>
-                            </label>
-                            {{ form.password }}
-                            {% if form.password.errors %}
-                            <label class="label">
-                                <span class="label-text-alt text-error">{{ form.password.errors|join:", " }}</span>
-                            </label>
-                            {% endif %}
-                        </div>
-
-                        <div class="form-control mt-6">
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </div>
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary w-full">Login</button>
                     </form>
 
                     <div class="text-center mt-4">

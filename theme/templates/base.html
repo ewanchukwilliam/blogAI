@@ -13,15 +13,22 @@
 		document.body.addEventListener('htmx:configRequest', (event) => {
 			event.detail.headers['X-CSRFToken'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 		});
+		
+		// Add listener for sidebar refresh
+		document.body.addEventListener('refreshSidebar', (event) => {
+			htmx.ajax('GET', '{% url "refresh_sidebar" %}', '#sidebar-content')
+		});
 	</script>
 	{% tailwind_css %}
 </head>
 
 <body>
 	<div class="min-w-screen bg-mainbackground font-thin text-white leading-normal tracking-normal min-h-screen">
-		{% block sidebar %}
-			{% include 'components/sidebar.html' with user=user %}
-		{% endblock %}
+		<div id="sidebar-content">
+			{% block sidebar %}
+				{% include 'components/sidebar.html' with user=user %}
+			{% endblock %}
+		</div>
 		<div class="ml-64"> <!-- This margin matches the sidebar width -->
 			<div class="min-h-screen">
 				{% include 'components/header.html' %}

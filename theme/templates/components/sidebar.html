@@ -60,9 +60,7 @@
 			</a>
 			{% else %}
 			<!-- Logout -->
-			<form hx-post="{% url 'authentication:logout' %}" 
-				  hx-target="#content-area"
-				  class="m-0">
+			<form action="{% url 'authentication:logout' %}" method="post" class="m-0">
 				{% csrf_token %}
 				<button type="submit" 
 						class="flex items-center px-3 py-2 text-gray-300 hover:bg-slate-700 rounded-lg group w-full text-left">
