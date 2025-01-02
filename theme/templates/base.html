@@ -8,20 +8,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<script src="{% static 'htmx.min.js' %}" defer></script>
+	<!-- <script src="https://unpkg.com/htmx.org@1.9.10"></script> -->
 	{% tailwind_css %}
 </head>
 
 <body>
-	<div class="min-w-screen bg-mainbackground font-thin text-white leading-normal tracking-normal min-h-screen flex flex-col">
-		<div class="flex min-w-screen">
+	<div class="min-w-screen bg-mainbackground font-thin text-white leading-normal tracking-normal min-h-screen">
 		{% include 'components/sidebar.html' %}
-				<div class="w-full">
-					{% include 'components/header.html' %}
+		<div class="ml-64"> <!-- This margin matches the sidebar width -->
+			<div class="min-h-screen">
+				{% include 'components/header.html' %}
 
-					<main >{% block content %} {% endblock %}</main>
+				<main id='content-area' class="">{% block content %} {% endblock %}</main>
 
-					{% include 'components/footer.html' %}
-				</div>
+				{% include 'components/footer.html' %}
+			</div>
 		</div>
 	</div>
 </body>

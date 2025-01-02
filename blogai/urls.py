@@ -22,8 +22,9 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('', include('core.urls'), name='home'),
+    path('auth/', include('authentication.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
-    path('core/', include('core.urls')),
 ]
 
 
