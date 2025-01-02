@@ -16,6 +16,18 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.1/howto/static-files/
+STATIC_URL = '/static/'
+STATIC_ROOT = str(BASE_DIR / 'staticfiles')  # Convert to string path
+STATICFILES_DIRS = [
+    str(BASE_DIR / "static"),  # Convert to string path
+    str(BASE_DIR / "theme" / "static"),  # Add theme's static directory
+]
+
+# Make sure these directories exist
+os.makedirs(STATIC_ROOT, exist_ok=True)
+os.makedirs(BASE_DIR / "static", exist_ok=True)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -49,7 +61,7 @@ INSTALLED_APPS = [
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-
+AUTH_USER_MODEL = 'authentication.User'
 TAILWIND_APP_NAME = "theme"
 
 MIDDLEWARE = [
@@ -71,7 +83,9 @@ ROOT_URLCONF = "blogai.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            BASE_DIR / 'theme' / 'templates',
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -90,13 +104,6 @@ WSGI_APPLICATION = "blogai.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -108,16 +115,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DB_NAME', 'postgres'),  # Default to 'postgres' if not set
-#         'USER': os.getenv('DB_USER', 'postgres'),  # Default to 'postgres' if not set
-#         'PASSWORD': os.getenv('DB_PASSWORD', 'mysecretpassword'),  # Default to 'mysecretpassword' if not set
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -157,3 +154,12 @@ STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Authentication settings
+AUTH_USER_MODEL = 'authentication.User'  # Your custom user model
+LOGIN_URL = 'authentication:login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
+# Session settings (optional but recommended)
+SESSION_COOKIE_AGE = 1209600  # 2 weeks in seconds

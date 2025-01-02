@@ -19,27 +19,30 @@
 				<span>Home</span>
 			</a>
 
-			<!-- Authentication Links -->
-			{% if user.is_authenticated %}
-				<a hx-post="{% url 'logout' %}" 
-				   hx-target="#content-area"
-				   class="flex items-center px-3 py-2 text-gray-300 hover:bg-slate-700 rounded-lg group">
-					<svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-							  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
-					</svg>
-					<span>Logout</span>
-				</a>
+			{% if not user.is_authenticated %}
+			<!-- Login -->
+			<a hx-get="{% url 'authentication:login' %}" 
+			   hx-target="#content-area"
+			   class="flex items-center px-3 py-2 text-gray-300 hover:bg-slate-700 rounded-lg group">
+				<span>Login</span>
+			</a>
+			<!-- Register -->
+			<a hx-get="{% url 'authentication:register' %}" 
+			   hx-target="#content-area"
+			   class="flex items-center px-3 py-2 text-gray-300 hover:bg-slate-700 rounded-lg group">
+				<span>Register</span>
+			</a>
 			{% else %}
-				<a hx-get="{% url 'login' %}" 
-				   hx-target="#content-area"
-				   class="flex items-center px-3 py-2 text-gray-300 hover:bg-slate-700 rounded-lg group">
-					<svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-							  d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
-					</svg>
-					<span>Login</span>
-				</a>
+			<!-- Logout -->
+			<form hx-post="{% url 'authentication:logout' %}" 
+				  hx-target="#content-area"
+				  class="m-0">
+				{% csrf_token %}
+				<button type="submit" 
+						class="flex items-center px-3 py-2 text-gray-300 hover:bg-slate-700 rounded-lg group w-full text-left">
+					<span>Logout</span>
+				</button>
+			</form>
 			{% endif %}
 		</div>
 	</div>
