@@ -19,7 +19,9 @@
 
 <body>
 	<div class="min-w-screen bg-mainbackground font-thin text-white leading-normal tracking-normal min-h-screen">
-		{% include 'components/sidebar.html' %}
+		{% block sidebar %}
+			{% include 'components/sidebar.html' with user=user %}
+		{% endblock %}
 		<div class="ml-64"> <!-- This margin matches the sidebar width -->
 			<div class="min-h-screen">
 				{% include 'components/header.html' %}

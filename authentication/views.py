@@ -61,4 +61,9 @@ def profile_view(request):
     return render(request, template, {})
 
 
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+
 # Create your views here.
