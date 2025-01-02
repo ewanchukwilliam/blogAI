@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_browser_reload",
     "tailwind",
     "theme",
     "django_htmx",
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
+    "core.middleware.HtmxRedirectMiddleware",
 ]
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
@@ -69,8 +71,7 @@ ROOT_URLCONF = "blogai.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-        ],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -97,13 +98,13 @@ WSGI_APPLICATION = "blogai.wsgi.application"
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blogai',
-        'USER': 'root',  
-        'PASSWORD':   'pass!',
-        'HOST': 'localhost',  
-        'PORT': '6543',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "blogai",
+        "USER": "root",
+        "PASSWORD": "pass!",
+        "HOST": "localhost",
+        "PORT": "6543",
     }
 }
 
@@ -113,7 +114,7 @@ DATABASES = {
 #         'NAME': os.getenv('DB_NAME', 'postgres'),  # Default to 'postgres' if not set
 #         'USER': os.getenv('DB_USER', 'postgres'),  # Default to 'postgres' if not set
 #         'PASSWORD': os.getenv('DB_PASSWORD', 'mysecretpassword'),  # Default to 'mysecretpassword' if not set
-#         'HOST': 'localhost',  
+#         'HOST': 'localhost',
 #         'PORT': '5432',
 #     }
 # }
@@ -150,7 +151,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

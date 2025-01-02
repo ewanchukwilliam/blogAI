@@ -10,7 +10,8 @@ from django.shortcuts import redirect, render
 
 def homepage(request):
     user_authenticated = request.user.is_authenticated
-    return render(request, "core/Homepage.html", {"user_authenticated": user_authenticated})
+    template = "core/partials/home_partial.html" if request.htmx else "core/homepage.html"
+    return render(request, template, {"user_authenticated": user_authenticated})
 
 
 def login_view(request):
@@ -22,7 +23,10 @@ def login_view(request):
             return redirect("home")
     else:
         form = AuthenticationForm()
-    return render(request, "login.html", {"form": form})
+    
+    # Choose template based on HTMX request
+    template = "authentication/partials/login_partial.html" if request.htmx else "authentication/login_form.html"
+    return render(request, template, {"form": form})
 
 
 def logout_view(request):
