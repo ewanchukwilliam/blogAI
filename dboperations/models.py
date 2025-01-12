@@ -33,11 +33,5 @@ class Follow(models.Model):
 
     def __str__(self):
         return self.follower
-
-
-
-
-
-
 # Create your models here.
 
