@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "django_htmx",
     "core",
     "authentication",
+    "dboperations"
 ]
 
 INTERNAL_IPS = [
